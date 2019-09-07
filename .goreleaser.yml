@@ -6,7 +6,6 @@ builds:
 - 
   main: ./bin/main.go
   binary: docker-machine-driver-cloudstack
-  main: bin/main.go
   env:
     - CGO_ENABLED=0
 
