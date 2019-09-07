@@ -36,7 +36,7 @@ docker-machine create -d cloudstack \
   docker-machine
 ```
 ## Changes
-* 2019-09-07 updates to GoReleaser build configuration; adding a Docker build environment
+* 2019-09-07 updates to GoReleaser build configuration; adding a Docker build and test environment with all required dependencies. 
 
 
 ## Acknowledgement
