@@ -35,8 +35,11 @@ docker-machine create -d cloudstack \
   --cloudstack-expunge \
   docker-machine
 ```
+## Changes
+* 2019-09-07 updates to GoReleaser build configuration; adding a Docker build environment
+
 
 ## Acknowledgement
 
-The driver is originally written by [@svanharmelen](https://github.com/svanharmelen), [@atsaki](https://github.com/atsaki) and [@andrestc](https://github.com/andrestc).
+The driver is originally written by [@svanharmelen](https://github.com/svanharmelen), [@atsaki](https://github.com/atsaki) and [@andrestc](https://github.com/andrestc). Further development and maintenance done by [@dahendel](https://github.com/dahendel) and[@pmury](https://github.com/pmury).
 
