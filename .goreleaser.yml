@@ -1,12 +1,14 @@
+---
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
 project_name: docker-machine-driver-cloudstack
 builds:
--
+- 
+  main: ./bin/main.go
   binary: docker-machine-driver-cloudstack
   main: bin/main.go
   env:
-  - CGO_ENABLED=0
+    - CGO_ENABLED=0
 
   goos:
     - windows
@@ -19,56 +21,27 @@ builds:
     - amd64
     - 386
 
-nfpm:
-  # You can change the name of the package.
-  # This is parsed with the Go template engine and the following variables
-  # are available:
-  # - ProjectName
-  # - Tag
-  # - Version (Git tag without `v` prefix)
-  # - Os
-  # - Arch
-  # - Arm (ARM version)
-  # - Env (environment variables)
-  # Default: `{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}`
-  name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-
-  # Your app's vendor.
-  # Default is empty.
-  vendor: Dustin Hendel
-
-  # Your app's homepage.
-  # Default is empty.
-  homepage: https://github.com/dahendel/docker-machine-cloudstack
-
-  # Your app's maintainer (probably you).
-  # Default is empty.
-  maintainer: Dustin Hendel <dustinhendel@gmail.com>
-
-  # Your app's description.
-  # Default is empty.
-  description: Cloudstack driver for docker-machine
-
-  # Your app's license.
-  # Default is empty.
-  license: Apache 2.0
-
-  # Formats to be generated.
-  formats:
+nfpms:
+  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    vendor: Dustin Hendel
+    homepage: https://github.com/dahendel/docker-machine-cloudstack
+    maintainer: Dustin Hendel <dustinhendel@gmail.com>
+    description: Cloudstack driver for docker-machine
+    license: Apache 2.0
+    formats:
     - deb
     - rpm
+    bindir: /usr/bin
 
-  # Override default /usr/local/bin destination for binaries
-  bindir: /usr/bin
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Os }}.{{ .Arch }}"
+    format: binary
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      amd64: amd64
 
-archive:
-  name_template: "{{ .ProjectName }}_{{ .Os }}.{{ .Arch }}"
-  format: binary
-  replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    amd64: amd64
 checksum:
   name_template: 'checksums.txt'
 
